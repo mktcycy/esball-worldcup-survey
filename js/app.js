@@ -6,7 +6,7 @@
   var $ = function (s, r) { return (r || document).querySelector(s); };
 
   var params = new URLSearchParams(location.search);
-  var role = (params.get("role") || "").toLowerCase().trim();
+  var role = (params.get("role") || window.FORCE_ROLE || "").toLowerCase().trim();
   var refFrom = (params.get("ref") || "").trim();
   var roles = ["member", "newbie"];
 

@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>ESBALL 新人问卷</title>
+  <meta name="description" content="ESBALL 世界杯问卷 — 填写问卷，抽取奖金。" />
+  <meta name="robots" content="noindex" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%E2%9A%BD%3C/text%3E%3C/svg%3E" />
+  <meta name="theme-color" content="#0b5d3b" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&family=Noto+Serif+SC:wght@600;700;900&family=Roboto+Mono:wght@500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div class="progress" id="progress" aria-hidden="true"><div class="progress__bar" id="progressBar"></div></div>
+
+  <header class="hero" id="hero">
+    <div class="hero__pitch" aria-hidden="true">
+      <svg viewBox="0 0 400 200" preserveAspectRatio="xMidYMid slice">
+        <g fill="none" stroke="currentColor" stroke-width="1.4">
+          <rect x="8" y="8" width="384" height="184" rx="2" />
+          <line x1="200" y1="8" x2="200" y2="192" />
+          <circle cx="200" cy="100" r="34" /><circle cx="200" cy="100" r="2.4" fill="currentColor" stroke="none" />
+          <rect x="8" y="58" width="46" height="84" /><rect x="346" y="58" width="46" height="84" />
+        </g>
+      </svg>
+    </div>
+    <div class="hero__inner">
+      <p class="hero__eyebrow" id="eyebrow">ESBALL · 世界杯问卷</p>
+      <h1 class="hero__title" id="title">ESBALL 世界杯问卷</h1>
+      <p class="hero__intro" id="intro"></p>
+      <div class="hero__cta" id="startWrap" hidden>
+        <button type="button" class="cta cta--start" id="startBtn">立即参与 →</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="picker" id="picker" hidden>
+      <h2 class="picker__h">问卷预览 · 请选择版本</h2>
+      <p class="picker__note">正式发送时，会员版与新人版各有专属链接。以下供内部预览。</p>
+      <div class="picker__grid" id="pickerGrid"></div>
+    </section>
+
+    <div id="wizard"></div>
+    <section id="landing" class="land" hidden></section>
+  </main>
+
+  <footer class="foot"><p>ESBALL · 本问卷仅供活动体验优化之用 · 感谢您的参与</p></footer>
+
+  <script>window.FORCE_ROLE="newbie";</script>
+  <script src="js/config.js"></script>
+  <script src="js/questions.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
