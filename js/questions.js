@@ -43,13 +43,7 @@
       },
       m6a: { type: "text", q: "请问该网站的网址是？", placeholder: "请填写网址", next: "m6b" },
       m6b: { type: "text", q: "您为何会选择该网站来吸收体育资讯呢？", placeholder: "请简述选择的原因", next: "m7" },
-      m7: { type: "text", q: "请问您对于 ESBALL 是否有其他建议或回馈呢？", placeholder: "如果有请提供回馈", optional: true, next: "m8" },
-      m8: {
-        type: "single",
-        q: "🎉 恭喜您已完成问卷！依据内容将随机获得 ¥8~¥1,888 奖金（8/18 自动派发、免申请，打码 2 倍即可申请出款）。",
-        note: "是否有兴趣参与「推荐问卷活动」？除了可领取下线会员打码 X% 佣金，还有机会额外获得最高 ¥88,888 奖金！",
-        options: [{ label: "有兴趣", next: "L_ref" }, { label: "没有兴趣", next: "L_thanks" }]
-      }
+      m7: { type: "text", q: "请问您对于 ESBALL 是否有其他建议或回馈呢？", placeholder: "如果有请提供回馈", optional: true, next: "L_congrats" }
     }
   };
 
@@ -76,9 +70,16 @@
 
   // ---------- 落地页 ----------
   var landings = {
+    L_congrats: {
+      kind: "gate", icon: "🎉",
+      title: "恭喜您已完成问卷！",
+      body: ["依据内容将随机获得 ¥8 ~ ¥1,888 奖金", "8/18 自动派发、免申请，打码 2 倍即可申请出款"],
+      question: "是否有兴趣参与「推荐问卷活动」？除了可领取下线会员打码 X% 佣金，还有机会额外获得最高 ¥88,888 奖金！",
+      buttons: [{ label: "有兴趣，立即参与 →", to: "L_ref", primary: true }, { label: "暂不参与", to: "L_thanks" }]
+    },
     L_thanks: {
-      kind: "thanks",
-      title: "感谢您的填写！ ❤️",
+      kind: "thanks", icon: "❤️",
+      title: "感谢您的填写！",
       body: ["您的奖金将于 8/18 自动派发（免申请），打码 2 倍即可申请出款。", "祝您游戏愉快、顺心如意！"]
     },
     L_ref: {

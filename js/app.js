@@ -199,20 +199,39 @@
 
   /* ---------- 结尾 / 落地页 ---------- */
   function finish(landingKey) {
-    submitToSheet(landingKey);
-    renderLanding(SURVEY.landings[landingKey]);
+    var L = SURVEY.landings[landingKey];
+    if (L.kind !== "gate") submitToSheet(landingKey);
+    renderLanding(L);
+  }
+  function gateChoose(to, label) {
+    answers["_activity2"] = { text: label };
+    finish(to);
   }
 
   function renderLanding(L) {
-    $("#wizard").hidden = true; $("#picker").hidden = true;
+    $("#wizard").hidden = true; $("#picker").hidden = true; $("#hero").classList.add("is-collapsed");
     $("#progressBar").style.width = "100%";
     var host = $("#landing"); host.innerHTML = ""; host.hidden = false;
+    host.className = "land" + (L.kind === "referral" ? "" : " land--center");
 
+    if (L.icon) { var ic = document.createElement("div"); ic.className = "land__icon"; ic.textContent = L.icon; host.appendChild(ic); }
     var h = document.createElement("h2"); h.className = "land__h"; h.textContent = L.title; host.appendChild(h);
     if (L.lead) { var p = document.createElement("p"); p.className = "land__lead"; p.textContent = L.lead; host.appendChild(p); }
 
     if (L.kind === "thanks") {
       (L.body || []).forEach(function (t) { var e = document.createElement("p"); e.className = "land__p"; e.textContent = t; host.appendChild(e); });
+    }
+    if (L.kind === "gate") {
+      (L.body || []).forEach(function (t) { var e = document.createElement("p"); e.className = "land__p"; e.textContent = t; host.appendChild(e); });
+      if (L.question) { var qq = document.createElement("p"); qq.className = "land__gateq"; qq.textContent = L.question; host.appendChild(qq); }
+      var bts = document.createElement("div"); bts.className = "land__gatebtns";
+      (L.buttons || []).forEach(function (btn) {
+        var el = document.createElement("button"); el.type = "button";
+        el.className = btn.primary ? "cta" : "gate__no"; el.textContent = btn.label;
+        el.addEventListener("click", function () { gateChoose(btn.to, btn.label); });
+        bts.appendChild(el);
+      });
+      host.appendChild(bts);
     }
     if (L.kind === "referral") {
       // 推荐码 + 复制链接
@@ -276,6 +295,7 @@
       else val = a.label ? (a.label + (a.text ? "：" + a.text : "")) : (a.text || "");
       rows.push({ qid: qid, question: q.q, answer: val });
     });
+    if (answers["_activity2"]) rows.push({ qid: "活动二意愿", question: "是否参与推荐问卷活动", answer: answers["_activity2"].text });
     if (answers["_memberCode"]) rows.push({ qid: "会员推荐码", question: "会员自填推荐码", answer: answers["_memberCode"].text });
     if (role === "newbie" && refFrom) rows.unshift({ qid: "推荐人ref", question: "推荐人推荐码", answer: refFrom });
     var payload = { submissionId: genId(), seg: (role === "member" ? "会员问卷" : "新人问卷"), ts: new Date().toISOString(), ua: navigator.userAgent, answers: rows };

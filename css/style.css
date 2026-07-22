@@ -281,3 +281,16 @@ body{
   font-size:clamp(20px,5.6vw,26px); letter-spacing:.02em; color:#3a2a06;
   background:linear-gradient(180deg,#f4d58a,var(--gold)); border:1px solid #f0e2b0;
   padding:10px 22px; border-radius:999px; box-shadow:0 8px 22px -8px rgba(0,0,0,.45)}
+
+/* 落地页：全屏置中 + 精致 */
+.land--center{min-height:calc(100svh - 96px); display:flex; flex-direction:column; justify-content:center; align-items:center}
+.land__icon{font-size:52px; line-height:1; margin-bottom:6px; animation:pop .5s cubic-bezier(.2,.8,.2,1) both}
+@keyframes pop{from{transform:scale(.4); opacity:0}to{transform:scale(1); opacity:1}}
+.land__gateq{margin:14px auto 4px; max-width:44ch; font-size:14.5px; line-height:1.75; color:var(--ink);
+  background:var(--sel-bg); border:1px solid var(--sel-line); border-radius:12px; padding:13px 16px}
+.land__gatebtns{display:flex; flex-direction:column; gap:11px; width:100%; max-width:340px; margin:22px auto 0}
+.land__gatebtns .cta{display:block; width:100%; text-align:center}
+.gate__no{display:block; width:100%; cursor:pointer; font:inherit; font-size:15px; font-weight:500;
+  color:var(--ink-soft); background:transparent; border:1.5px solid var(--line-strong); border-radius:13px; padding:13px 20px}
+.gate__no:hover{border-color:var(--sel-line); color:var(--ink)}
+.foot{line-height:1.9}
