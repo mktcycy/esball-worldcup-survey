@@ -297,3 +297,25 @@ body{
 
 /* 落地页标题/导语支持手动断行 */
 .land__h,.land__lead{white-space:pre-line}
+
+/* 推荐页：了解如何获得推荐码（可展开） */
+.howto__toggle{display:block; width:100%; margin-top:14px; cursor:pointer; font:inherit; font-size:14px; font-weight:700;
+  color:var(--pitch-800); background:var(--gold-soft); border:1px solid var(--gold); border-radius:11px; padding:11px}
+@media (prefers-color-scheme: dark){ .howto__toggle{color:#0d130f} }
+:root[data-theme="dark"] .howto__toggle{color:#0d130f}
+.howto__toggle:hover{filter:brightness(1.03)}
+.howto__panel{margin-top:10px}
+.howto__img{aspect-ratio:16/10; width:100%; display:flex; align-items:center; justify-content:center;
+  background:#0c0c0c; color:#8a8a8a; font-size:14px; letter-spacing:.1em; border:1px solid #2a2a2a; border-radius:11px}
+
+/* 推荐页 质感强化 */
+.land .sharebox{background:linear-gradient(180deg,#fffdf6,var(--paper)); border:1.5px solid var(--gold);
+  box-shadow:0 12px 30px -16px rgba(201,162,74,.6); padding:18px 17px}
+@media (prefers-color-scheme: dark){ .land .sharebox{background:linear-gradient(180deg,#1b2419,var(--card))} }
+:root[data-theme="dark"] .land .sharebox{background:linear-gradient(180deg,#1b2419,var(--card))}
+.sharebox__h{font-size:15px}
+.land__card{position:relative; border-radius:14px; padding:16px 18px 16px 20px; box-shadow:var(--shadow); overflow:hidden}
+.land__card::before{content:""; position:absolute; left:0; top:0; bottom:0; width:4px; background:linear-gradient(180deg,var(--gold),var(--pitch-600))}
+.land__cardh{font-size:15.5px; margin-bottom:11px}
+.land__ul li{margin:7px 0; line-height:1.75}
+.land:not(.land--center) .land__h{font-size:25px; line-height:1.4}

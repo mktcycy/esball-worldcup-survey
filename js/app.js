@@ -252,6 +252,17 @@
         answers["_memberCode"] = { text: code };
       });
       copy.addEventListener("click", function () { doCopy(memberShareUrl, copy); });
+      // 可展开：了解如何获得推荐码
+      var toggle = document.createElement("button"); toggle.type = "button"; toggle.className = "howto__toggle";
+      toggle.textContent = "⬇️ 了解如何获得推荐码 ⬇️";
+      var panel = document.createElement("div"); panel.className = "howto__panel"; panel.hidden = true;
+      var img = document.createElement("div"); img.className = "howto__img"; img.textContent = "图片待补";
+      panel.appendChild(img);
+      toggle.addEventListener("click", function () {
+        var willOpen = panel.hidden; panel.hidden = !willOpen;
+        toggle.textContent = willOpen ? "⬆️ 收起 ⬆️" : "⬇️ 了解如何获得推荐码 ⬇️";
+      });
+      box.appendChild(toggle); box.appendChild(panel);
       host.appendChild(box);
       appendList(host, "🔥 活动亮点", L.highlights);
       (L.steps || []).forEach(function (st) { appendList(host, st.h, st.items); });
