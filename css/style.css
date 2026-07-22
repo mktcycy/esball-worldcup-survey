@@ -294,3 +294,6 @@ body{
   color:var(--ink-soft); background:transparent; border:1.5px solid var(--line-strong); border-radius:13px; padding:13px 20px}
 .gate__no:hover{border-color:var(--sel-line); color:var(--ink)}
 .foot{line-height:1.9}
+
+/* 落地页标题/导语支持手动断行 */
+.land__h,.land__lead{white-space:pre-line}
