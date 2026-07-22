@@ -19,13 +19,20 @@
     S = SURVEY[role];
     $("#title").textContent = role === "member" ? "🎁 隐藏问卷活动" : "新人问卷";
     $("#intro").textContent = S.intro || "";
-    // 封面：显示「立即参与」按钮，点了才开始填
+    // 封面：全屏置中 +「立即参与」按钮，点了才开始填
+    $("#hero").classList.add("is-cover");
+    if (S.bonus) {
+      var bd = document.createElement("div");
+      bd.className = "hero__bonus"; bd.textContent = S.bonus;
+      var inner = $(".hero__inner"); inner.insertBefore(bd, $("#startWrap"));
+    }
     $("#startWrap").hidden = false;
     $("#wizard").hidden = true;
     $("#startBtn").addEventListener("click", startSurvey);
   }
 
   function startSurvey() {
+    $("#hero").classList.remove("is-cover");
     $("#hero").classList.add("is-collapsed");
     $("#startWrap").hidden = true;
     $("#wizard").hidden = false;

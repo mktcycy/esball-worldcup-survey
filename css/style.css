@@ -268,3 +268,16 @@ body{
 .cta--start{font-size:17px; padding:16px 34px}
 .hero.is-collapsed{display:none}
 .wrap{padding-top:22px}
+
+/* 封面：全屏置中 */
+.hero.is-cover{border-bottom:none}
+.hero.is-cover .hero__inner{min-height:calc(100svh - 4px); display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; padding-top:48px; padding-bottom:48px}
+.hero.is-cover .hero__eyebrow{margin-bottom:16px}
+.hero.is-cover .hero__intro{margin-left:auto; margin-right:auto; max-width:34ch; font-size:15.5px}
+.hero.is-cover .hero__cta{display:flex; justify-content:center; width:100%}
+.hero.is-cover .cta--start{min-width:230px; padding:17px 40px; font-size:18px}
+/* 奖金强化徽章 */
+.hero__bonus{margin:20px auto 4px; display:inline-block; font-family:"Noto Serif SC",serif; font-weight:900;
+  font-size:clamp(20px,5.6vw,26px); letter-spacing:.02em; color:#3a2a06;
+  background:linear-gradient(180deg,#f4d58a,var(--gold)); border:1px solid #f0e2b0;
+  padding:10px 22px; border-radius:999px; box-shadow:0 8px 22px -8px rgba(0,0,0,.45)}
