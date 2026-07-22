@@ -262,3 +262,9 @@ body{
 .land__cta{margin-top:22px}
 .land .sharebox{margin:18px auto 6px}
 .land .cta{display:inline-block}
+
+/* 封面按钮 & 收合 */
+.hero__cta{margin-top:22px}
+.cta--start{font-size:17px; padding:16px 34px}
+.hero.is-collapsed{display:none}
+.wrap{padding-top:22px}

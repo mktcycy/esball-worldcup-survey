@@ -17,8 +17,18 @@
   if (roles.indexOf(role) === -1) { renderPicker(); }
   else {
     S = SURVEY[role];
-    $("#title").textContent = role === "member" ? "会员问卷" : "新人问卷";
+    $("#title").textContent = role === "member" ? "🎁 隐藏问卷活动" : "新人问卷";
     $("#intro").textContent = S.intro || "";
+    // 封面：显示「立即参与」按钮，点了才开始填
+    $("#startWrap").hidden = false;
+    $("#wizard").hidden = true;
+    $("#startBtn").addEventListener("click", startSurvey);
+  }
+
+  function startSurvey() {
+    $("#hero").classList.add("is-collapsed");
+    $("#startWrap").hidden = true;
+    $("#wizard").hidden = false;
     if (role === "newbie" && refFrom) showRefBanner();
     curId = S.start; history = [];
     renderQuestion();
