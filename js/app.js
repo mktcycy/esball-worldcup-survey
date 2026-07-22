@@ -82,6 +82,7 @@
     if (q.note) { var n = document.createElement("p"); n.className = "q__note"; n.textContent = q.note; card.appendChild(n); }
 
     if (q.type === "single") card.appendChild(buildSingle(q));
+    else if (q.type === "multi") card.appendChild(buildMulti(q));
     else card.appendChild(buildText(q));
     wrap.appendChild(card);
 
@@ -132,6 +133,35 @@
     wrap.appendChild(tb); return tb;
   }
 
+  function buildMulti(q) {
+    var wrap = document.createElement("div"); wrap.className = "opts";
+    var max = q.max || 99;
+    var saved = answers[curId] || { labels: [] };
+    q.options.forEach(function (opt) {
+      var label = typeof opt === "string" ? opt : opt.label;
+      var hasText = typeof opt === "object" && opt.text;
+      var lab = document.createElement("label"); lab.className = "opt opt--multi";
+      lab.innerHTML = '<input type="checkbox"><span class="opt__box"></span><span class="opt__label">' + esc(label) + '</span>';
+      var input = lab.querySelector("input");
+      if (saved.labels && saved.labels.indexOf(label) >= 0) { input.checked = true; lab.classList.add("is-on"); }
+      input.addEventListener("change", function () {
+        var a = answers[curId] || { labels: [] }; if (!a.labels) a.labels = [];
+        if (input.checked) {
+          if (a.labels.length >= max) { input.checked = false; warn("最多选择 " + max + " 项"); return; }
+          a.labels.push(label); lab.classList.add("is-on");
+          if (hasText) { var tb = wrap.querySelector(".opt-text") || addOptText(wrap); tb.hidden = false; tb.focus(); }
+        } else {
+          a.labels = a.labels.filter(function (v) { return v !== label; }); lab.classList.remove("is-on");
+          if (hasText) { var t = wrap.querySelector(".opt-text"); if (t) t.hidden = true; }
+        }
+        answers[curId] = a;
+      });
+      wrap.appendChild(lab);
+      if (hasText && saved.labels && saved.labels.indexOf(label) >= 0) { var t2 = addOptText(wrap); t2.value = saved.text || ""; }
+    });
+    return wrap;
+  }
+
   function buildText(q) {
     var wrap = document.createElement("div");
     var ta = document.createElement("textarea");
@@ -147,6 +177,7 @@
     var q = S.questions[curId], a = answers[curId];
     if (!q.optional) {
       if (q.type === "single" && (!a || !a.label)) return warn("请选择一个选项");
+      if (q.type === "multi" && (!a || !a.labels || !a.labels.length)) return warn("请至少选择一项");
       if (q.type === "text" && (!a || !a.text)) return warn("请填写后再继续");
     }
     var nextId = (a && a.next) || q.next || null;
@@ -240,7 +271,9 @@
       if (qid.indexOf("_") === 0) return;
       var q = S.questions[qid]; if (!q) return;
       var a = answers[qid];
-      var val = a.label ? (a.label + (a.text ? "：" + a.text : "")) : (a.text || "");
+      var val;
+      if (a.labels) val = a.labels.join("、") + (a.text ? "（其他：" + a.text + "）" : "");
+      else val = a.label ? (a.label + (a.text ? "：" + a.text : "")) : (a.text || "");
       rows.push({ qid: qid, question: q.q, answer: val });
     });
     if (answers["_memberCode"]) rows.push({ qid: "会员推荐码", question: "会员自填推荐码", answer: answers["_memberCode"].text });

@@ -20,7 +20,7 @@
     intro: "亲爱的会员您好，恭喜您获得隐藏问卷活动的参与资格！您只需花 3 分钟填写问卷，即可随机获得 ¥8 ~ ¥1,888 奖金（内容越完整，获得高额奖金的机率越高）。",
     questions: {
       m1: { type: "single", q: "您最喜欢在哪个体育产品下注呢？", options: SPORTS, next: "m2" },
-      m2: { type: "single", q: "为什么最喜欢该体育产品呢？", options: PRODUCT_REASON, next: "m3" },
+      m2: { type: "multi", max: 3, q: "为什么最喜欢该体育产品呢？（选择最多 3 个原因）", options: PRODUCT_REASON, next: "m3" },
       m3: {
         type: "single", q: "针对本次 ESBALL 世界杯活动，您最喜欢哪个活动？",
         note: "（活动名称请以实际活动替换）",
@@ -38,7 +38,7 @@
       m5a: { type: "text", q: "请问该网站的网址是？", placeholder: "请填写网址", next: "m5b" },
       m5b: { type: "text", q: "您为何会选择该网站进行投注呢？", placeholder: "请简述选择的原因", next: "m6" },
       m6: {
-        type: "single", q: "您平时是否有在体育资讯网站吸收体育资讯呢？",
+        type: "single", q: "您平时是否有在《体育资讯网站》吸收体育资讯呢？",
         options: [{ label: "有", next: "m6a" }, { label: "没有", next: "m7" }]
       },
       m6a: { type: "text", q: "请问该网站的网址是？", placeholder: "请填写网址", next: "m6b" },
@@ -70,7 +70,7 @@
         ], next: "n3"
       },
       n3: { type: "single", q: "您在该网站习惯下注的体育产品是？", options: SPORTS, next: "n4" },
-      n4: { type: "single", q: "为什么最喜欢该体育产品呢？", options: PRODUCT_REASON, next: "L_reg" }
+      n4: { type: "multi", max: 3, q: "为什么最喜欢该体育产品呢？（选择最多 3 个原因）", options: PRODUCT_REASON, next: "L_reg" }
     }
   };
 
