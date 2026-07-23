@@ -256,8 +256,11 @@
       var toggle = document.createElement("button"); toggle.type = "button"; toggle.className = "howto__toggle";
       toggle.textContent = "⬇️ 了解如何获得推荐码 ⬇️";
       var panel = document.createElement("div"); panel.className = "howto__panel"; panel.hidden = true;
-      var img = document.createElement("div"); img.className = "howto__img"; img.textContent = "图片待补";
-      panel.appendChild(img);
+      ["img/howto-1.jpg", "img/howto-2.jpg", "img/howto-3.jpg", "img/howto-4.jpg"].forEach(function (src) {
+        var im = document.createElement("img");
+        im.className = "howto__step"; im.src = src; im.alt = "推广教程"; im.loading = "lazy";
+        panel.appendChild(im);
+      });
       toggle.addEventListener("click", function () {
         var willOpen = panel.hidden; panel.hidden = !willOpen;
         toggle.textContent = willOpen ? "⬆️ 收起 ⬆️" : "⬇️ 了解如何获得推荐码 ⬇️";

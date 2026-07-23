@@ -319,3 +319,7 @@ body{
 .land__cardh{font-size:15.5px; margin-bottom:11px}
 .land__ul li{margin:7px 0; line-height:1.75}
 .land:not(.land--center) .land__h{font-size:25px; line-height:1.4}
+
+/* 推荐码教学图（展开） */
+.howto__step{display:block; width:100%; height:auto; border-radius:11px; border:1px solid var(--line); margin-top:10px}
+.howto__step:first-child{margin-top:0}
