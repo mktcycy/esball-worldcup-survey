@@ -18,7 +18,7 @@
     start: "m1",
     intro: "亲爱的会员您好，恭喜您获得隐藏问卷活动的参与资格！您只需花 3 分钟填写问卷，即可随机获得 ¥8 ~ ¥1,888 奖金（内容越完整，获得高额奖金的机率越高）。",
     questions: {
-      m1: { type: "single", q: "您最喜欢在哪个体育产品下注呢？", options: SPORTS, next: "m2" },
+      m1: { type: "single", q: "您最喜欢在 ESBALL 的哪个体育产品下注呢？", options: ["NEW BB 体育", "BB 体育", "沙巴 体育", "IM 体育"], next: "m2" },
       m2: { type: "multi", max: 3, q: "为什么最喜欢该体育产品呢？（选择最多 3 个原因）", options: PRODUCT_REASON, next: "m3" },
       m3: {
         type: "single", q: "针对本次 ESBALL 世界杯活动，您最喜欢哪个活动？",
@@ -62,7 +62,7 @@
           "比较早注册、已经习惯了", { label: "其他（请说明）", text: true }
         ], next: "n3"
       },
-      n3: { type: "single", q: "您在该网站习惯下注的体育产品是？", options: SPORTS, next: "n4" },
+      n3: { type: "single", q: "您在该网站习惯下注的体育产品是？", options: ["NEW BB 体育", "BB 体育", "沙巴 体育", "IM 体育", "熊猫 体育", { label: "其他（请说明）", text: true }], next: "n4" },
       n4: { type: "multi", max: 3, q: "为什么最喜欢该体育产品呢？（选择最多 3 个原因）", options: PRODUCT_REASON, next: "L_reg" }
     }
   };
